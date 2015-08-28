@@ -4,6 +4,8 @@ permalink: about/
 profile: true
 ---
 
-This is a static page. It could be an 'about page' if you'd like.
+<b>Author</b>: William Hu, From Dalian, China.
+
+An 5+ years IOS developer.
 
 {% include footer.html %}
