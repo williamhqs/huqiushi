@@ -5,6 +5,7 @@ published: true
 date:   2015-08-28 23:49
 categories: IOS, swift
 comments: true
+description: more
 ---
 
 ###1. NSTimer in main thread

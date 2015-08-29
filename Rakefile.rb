@@ -20,6 +20,7 @@ task :post do
     categories:
     tags:
     comments: true
+    description: more
     ---
 
     EOS
