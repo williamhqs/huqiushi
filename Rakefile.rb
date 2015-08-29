@@ -18,6 +18,8 @@ task :post do
     published: false
     date:   #{Time.now.strftime('%Y-%m-%d %H:%M')}
     categories:
+    tags:
+    comments: true
     ---
 
     EOS

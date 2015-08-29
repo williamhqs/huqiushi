@@ -4,6 +4,7 @@ title: NSThread/NSTimer in swift
 published: true
 date:   2015-08-28 23:49
 categories: IOS, swift
+comments: true
 ---
 
 ###1. NSTimer in main thread
