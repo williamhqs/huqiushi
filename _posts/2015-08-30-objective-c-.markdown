@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Objective C 中枚举（循环)的选择
+title: Objective C 中枚举（循环）的选择
 published: true
 date:   2015-08-30 15:09
 categories: IOS
