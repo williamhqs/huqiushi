@@ -12,9 +12,10 @@ description: more
 项目升级到XCode7 可能会出现的一些警告：
 
 
- > Method override for the designated initializer of the superclass 'initWithNibName: bundle:' not found
+
+> Method override for the designated initializer of the superclass 'initWithNibName: bundle:' not found
  
- 解决方案：
+***解决方案***
   允许父类 ***NS_DESIGNATED_INITIALIZER***
 
 
@@ -34,6 +35,16 @@ description: more
 	@end
 
 ```
+
+-------------------
+> warning: no rule to process file '/Users/william/A/project/screens.json' of type text.json for architecture x86_64
+
+
+***解决方案***
+不编译这个json文件
+在项目Target 的 ```Build Phases －> Compile Sources``` 找到并删除。这个json 应该在```Copy Bundle Resources```中。
+ 
+
 
 
 
