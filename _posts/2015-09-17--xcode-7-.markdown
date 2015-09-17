@@ -1,0 +1,41 @@
+---
+layout: post
+title: 更新到XCode 7出现的一些警告
+published: true
+date:   2015-09-17 17:07
+categories: IOS
+tags: Warnnings
+comments: true
+description: more
+---
+
+项目升级到XCode7 可能会出现的一些警告：
+
+
+ > Method override for the designated initializer of the superclass 'initWithNibName: bundle:' not found
+ 
+ 解决方案：
+  允许父类 ***NS_DESIGNATED_INITIALIZER***
+
+
+```
+   @interface YourViewController ()
+	- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil NS_DESIGNATED_INITIALIZER;
+	@end
+	
+	@implementation YourViewController
+	- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	    if (self) {
+	        
+	    }
+	    return self;
+	}
+	@end
+
+```
+
+
+
+	
+
