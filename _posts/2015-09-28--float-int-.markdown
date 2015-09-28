@@ -1,0 +1,73 @@
+---
+layout: post
+title: 浮点数float和int的转换问题
+published: false
+date:   2015-09-28 18:46
+categories:
+tags:
+comments: true
+description: more
+---
+
+想在屏幕上左右滑动UIView来增加和减少一个数值。并通过一个UIView的 ```alpha```来展现。
+
+也就是：
+**alpha从0.8-0.0代表数值100-0 整数**
+
+代码如下：
+- (void) panFromLeftOrRight:(UIPanGestureRecognizer *)gestureRecognizer {
+    //NSLog(@"%f",_valueView.alpha);
+    if (_valueView.alpha > 0.8f) {
+        _valueView.alpha = 0.8;
+        return;
+    }
+    if (_valueView.alpha < 0.0) {
+        _valueView.alpha = 0.0;
+        return;
+    }
+
+    CGPoint point = [gestureRecognizer translationInView:_valueView];
+
+    if ((point.x - _lastX) > 10) {
+        _valueView.alpha -= 0.01;
+        _lastX = point.x;
+    }
+
+    if ((point.x - _lastX) < -10) {
+        _valueView.alpha += 0.01;
+        _lastX = point.x;
+    }
+
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded){
+        _lastX = 0.0;
+    }
+
+    float db = _valueView.alpha * 125.0f;
+    NSLog(@"%f",db);
+    NSLog(@"(%0.000f)",floor(db));
+    _value.text = [NSString stringWithFormat:@"%0.0f",db];
+    //OR
+    _value.text = [NSString stringWithFormat:@"%d",(int)db];
+    }
+但是发现老是丢失数值，然后以为精度计算哪里出了问题，然后找了下Objective C里面常用的方法：
+
+```
+float myFloat = 3.333
+
+// for nearest integer rounded up (3.333 -> 4):
+int result = (int)ceilf(myFloat );
+
+// for nearest integer (3.4999 -> 3, 3.5 -> 4):
+int result = (int)roundf(myFloat );
+
+// for nearest integer rounded down (3.999 -> 3):
+int result = (int)floor(myFloat);
+
+// For just an integer value (for which you don't care about accuracy) 
+int result = (int)myFloat;
+```
+定睛一看 ```int result = (int)roundf(myFloat );``` 这个是靠谱的一个，试了试还是不行。
+。。。
+好吧，最后发现因为我的步长选取的不够，导致有的数值不会出现，所以我将其从0.01 调整到了0.008满足了需求。
+
+记下...
