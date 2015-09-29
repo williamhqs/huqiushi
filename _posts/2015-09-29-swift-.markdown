@@ -1,0 +1,88 @@
+---
+layout: post
+title: Swift Programming Language 简本: 高级运算符
+
+published: true
+date:   2015-09-29 14:20
+categories:
+tags: Swift Programming
+comments: true
+description: 除了基本的运算符，Swift还提供了高级运算符，位运算，移位等
+---
+
+-------------------------
+> "这些文章都是看苹果的官方文档，然后自己理解表达简化出来的，肯定有不确切的地方"
+
+------------------
+
+除了基本的运算符，Swift还提供了高级运算符，位运算，移位等。
+
+Swift 的算数运算符默认情况下是不会溢出的，溢出行为都被作为错误处理。
+>溢出: 数据类型超过了计算机字长的界限而出现的数据溢出
+
+##位运算符（Bitwise Operators）
+
+一般比较低层的编程会用到位运算，比如图像设备驱动开发。还有从外部资源里面获取原始值(Raw data)的时候比如：为一个自定义的协议的通讯来进行编码和解码数据。
+
+###非 ~###
+这个没啥说的 ~1 = 0, ~0 = 1，而且必须写到变量前面没有空格，例子：
+
+```
+let initialBits: UInt8 = 0b00001111］
+let invertedBits = ~initialBits  // equals 11110000
+```
+
+###与 &###
+就是两位都是1的时候是1 否则都是0
+直接上例子：
+
+```
+let firstSixBits: UInt8 = 0b11111100
+let lastSixBits: UInt8  = 0b00111111
+let middleFourBits = firstSixBits & lastSixBits  // equals 00111100
+```
+
+###或 ｜ ###
+两位中有一位是1那就都是1.
+
+```
+let someBits: UInt8 = 0b10110010
+let moreBits: UInt8 = 0b01011110
+let combinedbits = someBits | moreBits  // equals 11111110
+```
+
+###异或 ^###
+两位一样是0，不一样是1
+
+```
+let firstBits: UInt8 = 0b00010100
+let otherBits: UInt8 = 0b00000101
+let outputBits = firstBits ^ otherBits  // equals 00010001
+```
+
+###左移 << 和右移 >> 
+左移乘2，右移除2
+
+对于无符号整形(Unsigned Integers)
+
+1. 存在的所有位根据规则需求左右移动相应的位数
+2. 如果移动的位数超过了这个整数的存储界限那么就被扔掉。
+3. 移动后剩下的位数就被补上0
+
+不理解可能因为写的太短，这张我就上图了
+![shift left](/Users/william/Desktop/bitshiftUnsigned_2x.png)
+
+继续糖炒栗子：
+
+```
+let shiftBits: UInt8 = 4 // 00000100 in binary
+shiftBits << 1           // 00001000 (这个就是8 乘2了）
+shiftBits << 2           // 00010000 （这个就是16）
+shiftBits << 5           // 10000000  自己算吧 
+shiftBits << 6           // 00000000
+shiftBits >> 2           // 00000001(这个就是1，除以2个2)
+```
+
+
+
+
