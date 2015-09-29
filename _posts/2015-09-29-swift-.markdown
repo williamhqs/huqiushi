@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Swift Programming Language 简本: 高级运算符
+title: Swift 简本: 高级运算符
 
 published: true
 date:   2015-09-29 14:20
