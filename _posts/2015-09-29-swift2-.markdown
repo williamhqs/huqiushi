@@ -1,0 +1,53 @@
+---
+layout: post
+title: Swift 简本 - 高级运算符(二)
+published: true
+date:   2015-09-29 16:40
+categories:
+tags: Swift
+comments: true
+description: more
+---
+
+-------------------------
+> "这些文章都是看苹果的官方《The Swift Programming Language (Swift 2)》，然后自己理解表达简化出来的，肯定有不确切的地方"
+
+>[原文链接] [id] 
+[id]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28  
+
+------------------
+
+[上篇] [idd] 文章讲了一些，这篇继续弄完
+[idd]: http://www.goaldrive.com/2015/swift-/ 
+
+###移动有符号的整型数
+
+因为有符号的整型是二进制形式展现的所以移位操作更复杂。
+
+有符号整型：
+
++ 第一位是符号位，0是负数，1是整数
++ 其余位是数值位，正数的规则和无符号的正数表达规则一样，上篇文章讲过
++ 负数的规则完全不同，用2的n次方减去当前数值的绝对值
+
+理解不了吧
+
+上图：
+
+![负数移位]({{post_url}}/assets/postImages/bitshiftSignedMinusFour_2x.png)
+
+第八位意思是负数，剩下7位算算10进制数是124，好了一个7位因为第八位是符号位，那么2的7次方128. 所以 128 － 124 前面放个"-" 号，也就是－4.
+
+这样做的好处？
+
+1. 可以用正常的二进制加来表示相加两个负数，-4 -1 直接相加，超出的部分就直接扔掉。
+
+![相加](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/bitshiftSignedAddition_2x.png)
+
+2. 对于负数也可以通过左右移位来乘除2这样的规则，不过有个额外的规则：
+   右移负数的时候要在左边空出来的位上面补符号位而不是补0，这样做就保证了右移过程负数仍旧是负数
+   ![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/bitshiftSigned_2x.png)
+   
+   
+  
+
