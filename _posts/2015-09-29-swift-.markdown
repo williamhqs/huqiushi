@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Swift 简本: 高级运算符
+title: Swift 简本 - 高级运算符
 
 published: true
 date:   2015-09-29 14:20
 categories:
-tags: Swift Programming
+tags: Swift
 comments: true
 description: 除了基本的运算符，Swift还提供了高级运算符，位运算，移位等
 ---
@@ -70,7 +70,12 @@ let outputBits = firstBits ^ otherBits  // equals 00010001
 3. 移动后剩下的位数就被补上0
 
 不理解可能因为写的太短，这张我就上图了
+
+<!--![shift left](../assets/images/avatar.png)
+
 ![shift left](../assets/postImages/bitshiftUnsigned_2x.png)
+-->
+![{{site.baseurl}}]({{site.baseurl}}/assets/postImages/bitshiftUnsigned_2x.png)
 
 继续糖炒栗子：
 
