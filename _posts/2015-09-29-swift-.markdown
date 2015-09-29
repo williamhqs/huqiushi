@@ -70,7 +70,7 @@ let outputBits = firstBits ^ otherBits  // equals 00010001
 3. 移动后剩下的位数就被补上0
 
 不理解可能因为写的太短，这张我就上图了
-![shift left](/Users/william/Desktop/bitshiftUnsigned_2x.png)
+![shift left](../assets/postImages/bitshiftUnsigned_2x.png)
 
 继续糖炒栗子：
 
