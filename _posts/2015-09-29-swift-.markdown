@@ -75,7 +75,7 @@ let outputBits = firstBits ^ otherBits  // equals 00010001
 
 ![shift left](../assets/postImages/bitshiftUnsigned_2x.png)
 -->
-![{{site.baseurl}}]({{site.baseurl}}/assets/postImages/bitshiftUnsigned_2x.png)
+![{{Bitshif}}]({{post.url}}/assets/postImages/bitshiftUnsigned_2x.png)
 
 继续糖炒栗子：
 
