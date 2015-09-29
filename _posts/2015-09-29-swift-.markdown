@@ -11,7 +11,10 @@ description: 除了基本的运算符，Swift还提供了高级运算符，位�
 ---
 
 -------------------------
-> "这些文章都是看苹果的官方文档，然后自己理解表达简化出来的，肯定有不确切的地方"
+> "这些文章都是看苹果的官方《The Swift Programming Language (Swift 2)》，然后自己理解表达简化出来的，肯定有不确切的地方"
+
+>[原文链接] [id] 
+[id]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28  
 
 ------------------
 
@@ -77,7 +80,7 @@ let outputBits = firstBits ^ otherBits  // equals 00010001
 -->
 ![{{Bitshif}}]({{post.url}}/assets/postImages/bitshiftUnsigned_2x.png)
 
-继续糖炒栗子：
+继续糖炒例子：
 
 ```
 let shiftBits: UInt8 = 4 // 00000100 in binary
@@ -87,6 +90,23 @@ shiftBits << 5           // 10000000  自己算吧
 shiftBits << 6           // 00000000
 shiftBits >> 2           // 00000001(这个就是1，除以2个2)
 ```
+然后书上还有个例子：
+
+```
+let pink: UInt32   = 0xCC6699
+let redComponent   = (pink & 0xFF0000) >> 16    // redComponent is 0xCC, or 204
+let greenComponent = (pink & 0x00FF00) >> 8   // greenComponent is 0x66, or 102
+let blueComponent  = pink & 0x0000FF           // blueComponent is 0x99, or 153
+```
+
+一个32位整型定义一个颜色粉色，那么一个颜色就是RGB了，那么如何分解出来的呢？
+
+0xCC6699 就分成 CC   66  99
+
++ 第一步：通过与获得CC， 就是 pink & 0xFF0000, 然后是0的就被忽略了
++ 第二步：因为每对16进制的字符占8位（也就是6699占用了16位）所以右移16位，得到红色的10进制数值
+
+其余的就不讲了，正常都懂了。
 
 
 
