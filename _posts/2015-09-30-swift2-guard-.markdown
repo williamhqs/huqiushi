@@ -8,7 +8,7 @@ date:   2015-09-30 12:25
 categories:
 tags:
 comments: true
-description: more
+description: ```guard``` 就像是```if``` 取决于条件返回的值是否是```true```.
 ---
 
 ```guard``` 就像是```if``` 取决于条件返回的值是否是```true```.
