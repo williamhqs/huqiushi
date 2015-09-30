@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Swift 集合类型
+title: Swift 简本 - 集合类型
 published: true
 date:   2015-09-29 19:03
 categories:
@@ -210,4 +210,6 @@ dic[2] = nil
 ```
 或者
 ```removeValueForKey``` （返回被删除的数值）
+
+就这样！
 
