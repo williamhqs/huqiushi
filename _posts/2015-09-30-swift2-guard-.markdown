@@ -1,14 +1,13 @@
 ---
 layout: post
-title: Swift 简书 - guard关键字
-
-
+title: Swift 简书 - guard 关键字
 published: true
 date:   2015-09-30 12:25
 categories:
 tags:
 comments: true
-description: ```guard``` 就像是```if``` 取决于条件返回的值是否是```true```.
+description: guard 就像是if 取决于条件返回的值是否是true
+
 ---
 
 ```guard``` 就像是```if``` 取决于条件返回的值是否是```true```.
