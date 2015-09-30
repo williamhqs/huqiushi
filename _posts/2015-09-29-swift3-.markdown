@@ -1,0 +1,213 @@
+---
+layout: post
+title: Swift 集合类型
+published: true
+date:   2015-09-29 19:03
+categories:
+tags:
+comments: true
+description: more
+---
+
+-------------------------
+> "这些文章都是看苹果的官方《The Swift Programming Language (Swift 2)》，然后自己理解表达简化出来的，肯定有不确切的地方"
+
+>[原文链接] [id] 
+[id]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105  
+
+------------------
+
+Swift 提供3个主要的几何类型数组(arrays)， 集合(sets)， 字典(dictionaryies).
+
+数组有序，集合无序但是数值唯一，字典无序key－value。
+
+Swift 的collection集合总能保证保数值和键值是可以存储的类型。也就是说你不会因为弄错了而插入一个错的类型。所以从collection返回的数据你别担心类型问题。
+
+###可变的集合###
+
+你可以创建几何类型分配给变量，那你就可以增删改等；如果分配给常量，那你就不能改。
+
+需要养成的好习惯就是能确保这个类型不修改的时候就用常量let，否则就用var，这样Swift的编译器就更好的优化你的集合类型了。
+
+
+##数组##
+
+
+###创建数组的方法###
+***创建一个数组***
+
+```
+var someInts = [Int]()
+someInts.append(3)   //［3］
+someInts = []	     // []
+
+```
+
+***创建一个有默认值的数组***
+
+```
+var doubles = [Double](count: 3, repeatedValue: 23) //[23,23,23]
+```
+***创建一个数组包含已有的两个数组***
+
+```
+var doubles1 = [Double](count: 3, repeatedValue: 23)
+var doubles2 = [Double](count: 3, repeatedValue: 25)
+
+var doubles3 = doubles1 + doubles2 //[23, 23, 23, 25, 25, 25]
+```
+***用数组字面量创建一个数组***
+
+```
+var names: [String] = ["Good", "Morning"]
+```
+
+因为Swift可以进行类型推断，所以你就可以简写
+
+```
+var shoppingList = ["Good", "Morning"]
+```
+
+###访问和修改数组###
+
+
+属性，方法和下标
+
+-----------------------
+
+
+```count``` 检查长度
+
+```isEmpty``` 长度是否为0，也就是count是不是0
+
+```append``` 添加到数组，相当于OC中的 ```addObject```
+
+添加一个数组到另外的数组
+```
+shoppingList += ["Baking Powder"]
+```
+
+访问一个数值
+
+```
+var firstItem = shoppingList[0]
+```
+
+修改
+
+```
+shoppingList[0] = "Six eggs"
+```
+修改一个范围的数值
+
+```
+shoppingList[4...6] = ["Bananas", "Apples"]
+```
+
+需要注意 **通过下标的方式不可以在数组的最后增加数值**
+
+```
+var names: [String] = ["good", "morning"]
+names.append("nihao")
+names[2] = "s"
+names[3] = "q" //这个就是不行的
+```
+插入数值```
+insert(_:atIndex:)
+```
+
+删除```
+removeAtIndex
+```
+
+删除最后一个
+```
+removeLast()
+```
+
+###访问
+
+```
+for (index, value) in shoppingList.enumerate() {
+    print("Item \(index + 1): \(value)")
+}
+```
+
+##集合##
+如何你觉得元素的顺序不重要，或者你只希望元素出现一次的时候就用Set来替换数组。
+
+存储在Set中的数值必须是hashable（你自己理解啥意思吧），哈希值就是当你比较任意的对象是否相等的时候的整数值。a==b 即a.hashValue==b.hashValue
+
+Swift的所有基本类型都是hashable的，Enum也是。你可以自己定义类型，如果想hashable的话就要遵循 Hashable 的协议，因为Hashable遵循Equatable，所以必须提供一个==的函数执行。
+
+
+###创建Set的方法###
+***创建一个Set***
+
+```
+var letters = Set<Character>()
+
+```
+
+***用数组创建Set***
+
+```
+var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
+//简写
+var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
+```
+###访问
+
+```
+for genre in favoriteGenres.sort() {
+    print("\(genre)")
+}
+```
+
+###基本的操作
+和，并，交集，并集
+都很简单不提供例子上图
+
+```
+intersect(_:)
+exclusiveOr(_:)
+union(_:)
+subtract(_:) 
+```
+![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/setVennDiagram_2x.png)
+
+
+##字典##
+字典也就是无序键值对。
+
+创建
+
+```
+var namesOfIntegers = [Int: String]()
+
+namesOfIntegers = [:] //赋值为空
+
+var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+简写
+var airports = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+```
+更新
+updateValue 更新已有的，或者添加新的，同时返回老值。
+例子
+
+```
+var dic = [1:"kye",2:"s"]
+//更新已有，返回"s"
+dic.updateValue("ddd", forKey: 2)
+//创建新的，返回nil
+dic.updateValue("sss", forKey: 3)
+```
+
+如果你想删除一个key的value
+
+```
+dic[2] = nil
+```
+或者
+```removeValueForKey``` （返回被删除的数值）
+
