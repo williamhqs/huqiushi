@@ -1,0 +1,237 @@
+---
+layout: post
+title: Swift 简书- 函数
+published: false
+date:   2015-09-30 16:07
+categories:
+tags:
+comments: true
+description: 本来不想写这个，心想不就是函数吗？可是然并卵！Swift的函数太牛掰了！不过这个可能不太适合初学者。废话少叙，开始。
+---
+
+-------------------------
+> "这些文章都是看苹果的官方《The Swift Programming Language (Swift 2)》，然后自己理解表达简化出来的，肯定有不确切的地方"
+
+>[原文链接] [id] 
+[id]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158 
+
+------------------
+
+
+本来不想写这个，心想不就是函数吗？可是然并卵！Swift的函数太牛掰了！不过这个可能不太适合初学者。废话少叙，开始。
+
+###普通的函数###
+如下：
+
++ 不带参数和返回值
+
+```
+func sayHello(){}
+
+```
++ 不带返回值
+
+```
+func sayHello(hello:String）{}
+```
++ 参数和返回值都带
+
+```
+func sayHello(string: String) -> String {
+    return string
+}
+```
++ 多个参数
+
+```
+func sayHello(string: String, string2: String) -> String {
+    return string
+}
+```
+**有点不同的来了**
+
+＋ 多个返回值，是的你没看错，多谢tuple类型
+
+```
+func minMax(array: [Int]) -> (min: Int, max: Int)? {
+    if array.isEmpty { return nil }
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+```
+没啥说的关于这个，不过你要注意到返回值是 ()? 也就是Option类型，也就是返回值可以是nil。
+
+**不同的来了**
+
++ 函数的参数名问题
+
+因为为了和Objective C的函数对应，所以通常当你在XCode里面敲入一个函数的时候第一个函数参数的名字就可以忽略了，第二个带着就行了. 
+
+但是可能可读性不强或者某种原因或者Swift作者心情不好就不喜欢，于是Swift 2 里面是这样的：
+
+```
+func someFunction(firstParameterName: Int, secondParameterName: Int) {
+}
+someFunction(1, secondParameterName: 2)
+```
+这是一个正常的函数调用但是 firstParameterName 这是个外部参数名没有了，看上去有点别扭，于是乎你可以这样做：
+
+
+```
+func sayHello(from person: String, to anotherPerson: String) -> String {
+    return "Hello \(person) and \(anotherPerson)!"
+}
+
+sayHello(from: "Bill", to: "Ted")
+```
+像不像是读一段话而已呢？也就是可读性增强了。 
+
+但是呢作者还不满意，上面类似 from to 这个外部参数名必须写，要是作者就是不想写呢？
+
+```
+func someFunction(firstParameterName: Int, _ secondParameterName: Int) { }
+someFunction(1, 2)
+```
+***带有默认参数的函数***
+
+```
+func someFunction(parameterWithDefault: Int = 12) {}
+someFunction(6) 
+someFunction() //这个就是12了
+```
+***看看可变参数***
+
+也就是用```...```来传递多个参数。比如 ```（numbers: Doubles ...）```实际上也就是```［Double］```
+
+```
+func arithmeticMean(numbers: Double...) -> Double {
+    var total: Double = 0
+    for number in numbers {
+        total += number
+    }
+    return total / Double(numbers.count)
+}
+arithmeticMean(1, 2, 3, 4, 5) // 3
+```
+**"一个函数最多只能有一个可变参数"**
+
+***常量参数和变量参数***
+函数参数默认都是常量。但是有时候有一个变量的copy就不用在函数里面定义一个新的变量了
+
+```
+func alignRight(var string: String, totalLenght: Int, pad: Charater) -> String {
+   return string
+}
+let a = "hello"
+let b = alignRight(a, totalLength:10, pad: "-") 
+b 的值不回影响a
+```
+
+**"如果在函数内部改变可变参数，那么这个改变在函数体外面是不会被看到的，可变函数真的很赞！"**
+
+
+###In-Out 参数，哇，看上去好深奥###
+
+可变参数的变化只在函数体内，如果你想让一个函数调用之后这个变化依旧保留呢？那就是In-Out参数了。
+
+in-out 参数只能是变量，因为常量不能被修改。也不能有默认值。
+
+```
+	func swap(inout a: Int, inout _ b:Int){
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+```
+
+###函数（型）类型 Function Types###
+是的他是一个类型。
+官方定义：每个函数都有一个确定的函数类型，由参数类型和返回值类型组成。
+
+```
+func addTwoInts(a: Int, _ b: Int) -> Int {
+    return a + b
+}
+```
+
+比如这个函数，函数类型就是：  ```(Int, Int) -> Int```
+```
+func printHelloWorld() {
+    print("hello, world")
+}
+```
+
+的函数类型就是：
+```
+() -> Void
+```
+函数类型就和起他类型一样，你也可以用它来定义变量：
+```
+var mathFunction: (Int, Int) -> Int = addTwoInts
+```
+
+他也可以做函数参数：
+
+```
+func printMathResult(mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
+    print("Result: \(mathFunction(a, b))")
+}
+printMathResult(addTwoInts, 3, 5) // 8
+```
+
+返回值：自己体会下下面的例子吧，应该不难看懂。
+
+```
+func chooseStepFunction(backwards: Bool) -> (Int) -> Int {
+    return backwards ? stepBackward : stepForward
+}
+
+var currentValue = 3
+let moveNearerToZero = chooseStepFunction(currentValue > 0)
+
+print("Counting to zero:")
+// Counting to zero:
+while currentValue != 0 {
+    print("\(currentValue)... ")
+    currentValue = moveNearerToZero(currentValue)
+}
+print("zero!")
+// 3...
+// 2...
+// 1...
+// zero!
+
+```
+
+## 嵌套函数 Nested ## 
+
+普通的函数作用域都是全局的，嵌套函数默认是被函数体对外隐藏的，例子如下：
+
+```
+func chooseStepFunction(backwards: Bool) -> (Int) -> Int {
+    func stepForward(input: Int) -> Int { return input + 1 }
+    func stepBackward(input: Int) -> Int { return input - 1 }
+    return backwards ? stepBackward : stepForward
+}
+var currentValue = -4
+let moveNearerToZero = chooseStepFunction(currentValue > 0)
+// moveNearerToZero now refers to the nested stepForward() function
+while currentValue != 0 {
+    print("\(currentValue)... ")
+    currentValue = moveNearerToZero(currentValue)
+}
+print("zero!")
+// -4...
+// -3...
+// -2...
+// -1...
+// zero!
+```
