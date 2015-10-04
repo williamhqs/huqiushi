@@ -1,0 +1,40 @@
+---
+layout: post
+title: Swift 简书- Deinitialization
+published: true
+date:   2015-10-04 22:35
+categories:
+tags:
+comments: true
+description: more
+---
+
+一个类的实例变量在被销毁之前会调用deinitializer。
+
+-------------------------
+> "这些文章都是看苹果的官方《The Swift Programming Language (Swift 2)》，然后自己理解表达简化出来的，肯定有不确切的地方"
+
+>[原文链接] [id] 
+[id]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Deinitialization.html#//apple_ref/doc/uid/TP40014097-CH19-ID142
+
+------------------
+
+
+一般情况ARC就帮你处理好了所有的内存的事情，不过有时候你可能自己要做点清理工作，比如你的类打开文件写文件的时候，在文件被销毁前你就需要关闭它。
+
+一个类至多有一个deinitializer。定义如下：
+
+```
+deinit {
+}
+```
+
+需要记住的几点：
+
+> 1. deinitializer 会在实例销毁前被自动调用，你不允许自行调用。
+
+> 2. 父类的deinitializer会被子类继承，并且在一个子类的deinitializer最后父类的deinitializer会被自动调用。即使这个字累没有提供自己的deinitializer。
+
+> 3. 一个deinitializer 能访问这个实例变量的所有的属性，修改它的行为（比如关闭特定名字的文件），因为一个实例变量直到deinitializer被调用之后才销毁。
+
+
