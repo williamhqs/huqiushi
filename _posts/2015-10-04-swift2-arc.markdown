@@ -1,0 +1,202 @@
+---
+layout: post
+title: Swift2 简书- 内存管理ARC（一）
+published: true
+date:   2015-10-04 23:15
+categories:
+tags:
+comments: true
+description: Swift ARC管理内存的使用情况，大部分情况下你都不需要自己管理，ARC自动释放不在需要的实例变量的内存空间。
+---
+
+Swift ARC管理内存的使用情况，大部分情况下你都不需要自己管理，ARC自动释放不在需要的实例变量的内存空间。
+
+> 引用计数(Reference Counting)只是在类（class）的实例变量中被应用，结构体和公用题都是数值类型，不会被引用存储和传递。
+
+
+你创建一个类的实例变量，ARC就申请一定的内存空间保存类型和数值等属性。
+此外，当这个实例变量不再被需要的时候，ARC就释放掉，这样被占用的内存就可以被其他的目的使用了。
+
+然而，如果ARC释放了一个变量仍旧被使用，那么久不可能再访问这个变量的属性和方法，如果你访问了，应用肯定就crash了。
+
+为了保证这种情况会回发生，ARC会追踪多少属性，常量和变量被引用到这个实例变量，只要至少有一个活跃的引用存在那么就不会销毁这个对象。
+
+所以，不管什么时候分配给实例给属性，常量或者变量的时候，确保他们***Strong***强引用，这样只要保证强引用的存在ARC就不允许销毁它了。
+
+
+###实例变量之间的强引用循环###
+**Strong Reference Cycle Between Class Instances**
+
+例子：
+
+```
+class Person {
+	let name: String
+	init(name: String) {self.name = name}
+	var apartment: Apartment?
+	deinit{println("\(name) is being deinitialized")}
+}
+```
+
+```
+class Apartment{
+	let unit: String
+	init(unit: String) {self.unit = unit}
+	var tenant: Person?
+	deinit{println("\(unit) is being deinitialized")}
+}
+```
+
+例子很简单，继续往下来：
+
+```
+var john: Person?
+var unit4A: Apartment?
+
+john = Person(name:"John")
+unit4A = Apartment(unit: "4A")
+```
+目前的引用情况是这样的：
+
+![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/referenceCycle01_2x.png)
+
+下面我们开始给属性赋值了：
+
+一个租客一个房，一个房有个租客：
+
+```
+john!.apartment = unit4A
+unit4A!.tenant = john
+
+```
+
+应用情况变为：![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/referenceCycle02_2x.png)
+
+Person 对象又个强引用到 Apartment， Apartment又个强引用到Person。
+
+所以
+```
+	john = nil
+```
+因为john还有一个强引用的属性，所以不能销毁，也就是deinitializer不能被调用。
+接着走：
+
+```
+unit4A = nil
+``` 
+john 是unit4A的属性也是强引用没有被销毁，所以也不能释放unit4A。这样就导致了两个不再被使用的对象的内存没有被释放而泄漏，也就是强引用循环。就到了这一步：
+![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/referenceCycle03_2x.png)
+
+好吧 这没有人有办法能释放他们了。
+
+有问题就有解决办法，解决强引用循环的方法
+
+1.  两种解决方案：weak引用和unowned引用
+2. 他们两个保证在引用循环里不是强引用。
+3. 不管什么时候，在这个引用的生命周期的某个点可以变成nil那就用weak，相反引用一旦被初始化就不可能是nil就用unowned
+
+很好理解的！
+
+###Weak 引用###
+
+因为若引用不保留strong hold，所以ARC可以销毁释放。
+
+> “weak引用必须是变量，这样在可以在运行时的时候被改变”
+
+> weak变量必须是optional，这样才可以为nil
+
+上例子：
+
+```
+class Person {
+    let name: String
+    init(name: String) { self.name = name }
+    var apartment: Apartment?
+    deinit { print("\(name) is being deinitialized") }
+}
+ 
+class Apartment {
+    let unit: String
+    init(unit: String) { self.unit = unit }
+    weak var tenant: Person?
+    deinit { print("Apartment \(unit) is being deinitialized") }
+}
+var john: Person?
+var unit4A: Apartment?
+ 
+john = Person(name: "John Appleseed")
+unit4A = Apartment(unit: "4A")
+ 
+john!.apartment = unit4A
+unit4A!.tenant = john
+
+```
+
+例子差不多不过用了weak引用，情况就如下图：
+![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/weakReference01_2x.png)
+
+继续：
+```
+jhon = nil
+```
+因为没有强引用，所以自然deinitialized被调用，之后被销毁。
+```
+unit4A = nil
+```
+同样也被销毁。
+
+> 在垃圾回收机制的系统里面，弱指针常常被执行一个缓存机制，因为只有在内存有压力触发了回收机制的时候没有强引用的对象才被销毁。然后ARC强引用被移除了那么立即被销毁，所以weak引用就是为了这个目的才做的。
+
+
+###Unowned 引用###
+
+Unowned引用必须保证有值也就是nonoptional.
+
+直接上例子：
+
+```
+class Customer {
+    let name: String
+    var card: CreditCard?
+    init(name: String) {
+        self.name = name
+    }
+    deinit { print("\(name) is being deinitialized") }
+}
+ 
+class CreditCard {
+    let number: UInt64
+    unowned let customer: Customer
+    init(number: UInt64, customer: Customer) {
+        self.number = number
+        self.customer = customer
+    }
+    deinit { print("Card #\(number) is being deinitialized") }
+}
+
+```
+
+一个客户Customer不一定有信用卡CreditCard，但是一个信用卡肯定对应一个客户。
+
+为了避免Strong Cycle，我们使用了unowned
+接着走：
+
+```
+var john: Customer?
+john = Customer(name: "John Appleseed")
+john!.card = CreditCard(number: 1234_5678_9012_3456, customer: john!)
+```
+john就办了一张信用卡，如图：
+
+![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/unownedReference01_2x.png)
+
+继续：
+
+```
+john = nil
+```
+这时候没人有这个信用卡了，信用卡也被销毁
+自然就被销毁了没有引用Cycle，如下图：
+
+![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/unownedReference02_2x.png)
+
