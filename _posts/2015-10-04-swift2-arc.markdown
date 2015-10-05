@@ -200,3 +200,46 @@ john = nil
 
 ![](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/unownedReference02_2x.png)
 
+
+上面讲了两种强引用Cycle。但是还有第三种，也就是双方属性都不能为nil，这种情况就需要一个类的unowned属性严格的unwrapped optional在另一个类的属性上。
+
+这样一单初始化完成两个属性就能直接被访问（不需要optional unwrapping）同时仍旧避免引用Cycle）
+
+栗子如下：
+
+一个国家必须有个首都城市，一个城市必须属于一个国家。
+
+```
+class Country {
+    let name: String
+    var capitalCity: City!
+    init(name: String, capitalName: String) {
+        self.name = name
+        self.capitalCity = City(name: capitalName, country: self)
+    }
+}
+ 
+class City {
+    let name: String
+    unowned let country: Country
+    init(name: String, country: Country) {
+        self.name = name
+        self.country = country
+    }
+}
+```
+
+capitalCity 属性unwrapped optional，```var capitalCity: City!``` 也就是默认值是nil，但是不用解包unwrap就可以直接访问。
+
+故此只要Country变量设置了name那么就算是被初始化完成了。Country的初始化方法就可以传递self给City的初始化方法了。
+
+所有的这些意味着你可以创建Country和City通过一行代码，没有创建一个强引用循环，同时capitalCity也可以被直接访问，不需要用！来解包：
+
+```
+var country = Country(name: "Canada", capitalName: "Ottawa")
+print("\(country.name)'s capital city is called \(country.capitalCity.name)")
+```
+
+至此，三种情况的强引用Cycle讲解完毕。
+
+
