@@ -1,0 +1,31 @@
+---
+layout: post
+title: Mac 系统占用情况清理
+published: true
+date:   2015-10-05 17:26
+categories:
+tags:
+comments: true
+description: more
+---
+
+MAC 用户可能很少考虑什么磁盘清理等，就连我用了5年多的mac 系统也没有考虑这个问题，但是最近我发现的硬盘忽然间就剩下了10多个G：
+>“About this Mac" -> "Storage"
+
+就会看到系统有个Other，占用了我50%的硬盘空间，可是other都是啥东西呢？
+> pdf，文档，所有的文件除了:
+ "Photos“， "Apps"，"Movides", "Audio", "Backups"
+ 
+好吧看Other实在不爽，想办法看看能不能清理下：
+
+***第一招，清理缓存***
+```
+/Users/william/Library/Caches
+```
+
+
+进入这个文件夹Caches，一看就是缓存文件，进去之后发现了个大家伙com.apple.dt.Xcode 居然3个多G我的个天，右键 Show package contents，发现一些目录，又个Downloads文件夹，点开发现居然有很多dmg我可认识，原来是系统的更新全在这里面，command＋Delete 不保留，哈哈这样居然减少了3个G的文件。
+
+***第二招，重启电脑***
+重启了下，没错又多了2个G左右，不过这个肯定和上面的无关，因为我的电脑几乎是不会关机的可能重启释放了一些空间。
+
