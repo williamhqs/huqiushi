@@ -16,7 +16,7 @@ description: 在Macbook retina屏幕或者1920x1080的高分屏幕上，用```ca
 也就是根据屏幕来适应canvas的大小。代码如下：
 
 ```
-$(function(){
+       $(function(){
    			var cv = document.getElementById('canvas');
 			var ctx = cv.getContext("2d");
 			//获取设备的像素率
