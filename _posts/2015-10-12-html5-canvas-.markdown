@@ -6,7 +6,7 @@ date:   2015-10-12 22:46
 categories:
 tags: Html5, javaScript
 comments: true
-description: more
+description: 在Macbook retina屏幕或者1920x1080的高分屏幕上，用```canvas```上面画用```fillText```文字的时候时候文字看上去很模糊
 ---
 
 >SVG, 可缩放矢量图形（Scalable Vector Graphics，SVG）是基于可扩展标记语言（XML），用于描述二维矢量图形的一种图形格式。SVG由W3C制定，是一个开放标准。
@@ -14,6 +14,7 @@ description: more
 也就是SVG是分辨率独立的。而```canvas```我们需要自己确定分辨率。在Macbook retina屏幕或者1920x1080的高分屏幕上，用```canvas```上面画用```fillText```文字的时候时候文字看上去很模糊，图片也是。这个问题如何解决呢？
 
 也就是根据屏幕来适应canvas的大小。代码如下：
+
 ```
 $(function(){
    			var cv = document.getElementById('canvas');
