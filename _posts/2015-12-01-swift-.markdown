@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Swift:冒泡排序
+title: Swift:冒泡排序&快速排序
 published: false
 date:   2015-12-01 13:49
-categories:
+categories: 算法
 tags:
 comments: true
 description: 冒泡排序（BubbleSort）的基本概念是：依次比较相邻的两个数
@@ -35,6 +35,10 @@ for var index = 0; index < numbers.count-1-times; index++ {
 
 ###快速排序
 >快速排序（Quicksort）是对冒泡排序的一种改进。
+
+**时间复杂度**
+理想状况，每一次都将待排序的数组划分成等长的两个部分那么需要log n次划分，最坏的情况下，每次划分只减少一次，那么就是和冒泡排序一样复杂度O(n^2), 所以平均复杂度就是 O（n * log n）
+复杂度：O（n * log n）
 
 具体做法：
 
@@ -80,3 +84,5 @@ func quickSort(left:Int, _ right: Int) {
 }
 quickSort(0, numbers1.count-1)
 ```
+
+所以说
