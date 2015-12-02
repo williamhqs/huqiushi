@@ -1,0 +1,82 @@
+---
+layout: post
+title: Swift:冒泡排序
+published: false
+date:   2015-12-01 13:49
+categories:
+tags:
+comments: true
+description: 冒泡排序（BubbleSort）的基本概念是：依次比较相邻的两个数
+---
+
+### 冒泡排序
+>冒泡排序（BubbleSort）的基本概念是：依次比较相邻的两个数，将小数放在前面，大数放在后面。即首先比较第1个和第2个数，将小数放前，大数放后。然后比较第2个数和第3个数，将小数放前，大数放后，如此继续，直至比较最后两个数，将小数放前，大数放后。重复以上过程.
+
+简而言之，相邻的两个数比较，大的数和小的交换，交换后的大数继续参加下一次比较，这样比较完所有的数之后，最大的就在最后面的。这样一轮完成。重复，最终排序好。
+
+**时间复杂度**
+最多比较次数 (n-1) + (n-2) + ... + 0 = n*(n-1)/2
+复杂度：O(N^2) 
+**例子**
+
+```
+var numbers = [1,3,3,23,67,34,2,7,0,9]
+
+for var times = 0; times < numbers.count; times++ {
+for var index = 0; index < numbers.count-1-times; index++ {
+    if numbers[index] > numbers[index+1] {
+        var a = numbers[index]
+        numbers[index] = numbers[index+1]
+        numbers[index+1] = a
+    }
+  }
+}
+```
+
+###快速排序
+>快速排序（Quicksort）是对冒泡排序的一种改进。
+
+具体做法：
+
+1. 取第一个数为基数，取出来放到base里，相当于挖一个坑
+2. 从最后一个往前找出比基数小的j，用这个数填到第一个数出来的坑，这个数成为新坑
+3. 再从第一个往后找找出比基数大的填到2的新坑,这时留下新坑i
+4. 重复以上步骤，直到前后到达同一个数值的时候，用基数添最后的坑
+这样从1到4就保证了基数左边都是小于基数右边都是大于基数
+5. 用递归的方式来继续左边和右边的数，最终排序完成
+
+```
+var numbers1 = [3,9,23,67,34,2,7,0,1]
+
+
+func quickSort(left:Int, _ right: Int) {
+    
+    if left > right {
+        return
+    }
+    var i=left,j=right
+    
+    let base = numbers1[left]
+    while i < j {
+        while numbers1[j] >= base && i<j {
+            j--
+        }
+        if (i < j){
+            numbers1[i] = numbers1[j]
+        }
+        while numbers1[i] < base && i<j {
+            i++
+        }
+        if (i < j) {
+            numbers1[j] = numbers1[i]
+        }
+    }
+    if (i==j) {
+        numbers1[i] = base
+    }
+    
+    quickSort(left,i-1)
+    quickSort(i+1,right)
+}
+quickSort(0, numbers1.count-1)
+```
