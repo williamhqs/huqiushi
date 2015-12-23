@@ -12,16 +12,22 @@ My Projects in 2015
 -----------------------------------------------
 <br>
 
-<div style="width:100px;">
-	<img src="{{site.url}}/assets/postImages/Revols.png" style="
-	width:100px;text-align:center;display:block; width:100%;"/>
-	<a href="www.revols.com" style="text-align:center;display:block; width:100%;">Revols</a>
+<div style="text-align: left;">
+  <span class="box" style="width:22%; padding:0 5px; display:inline-block; overlfow:hidden;">
+	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{ site.url }}/assets/postImages/Revols.png" style="
+    width:100px;text-align:center;display:block; width:100%;"></a >
+    <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;">Revols</a >
+</span>
+  <span class="box" style="width:22%; padding:0 5px; display:inline-block; overlfow:hidden;">
+	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/postImages/Auroma.png" style="
+    width:100px;text-align:center;display:block; width:100%;"></a >
+    <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;">Auroma</a >
+</span>
 </div>
-<div style="width:100px;float:left">
-	<img src="{{site.url}}/assets/postImages/Revols.png" style="
-	width:100px;text-align:center;display:block; width:100%;"/>
-	<a href="www.revols.com" style="text-align:center;display:block; width:100%;">Revols</a>
-</div>
+
+
+<br>
+<br>
 
 <!-- ![Revols3]({{ site.url }}/assets/postImages/Revols.png)-->
 
