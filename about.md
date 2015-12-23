@@ -9,7 +9,9 @@ profile: true
 5+ years experience IOS developer.
 My Projects
 -----------------------------------------------
-![Revols3]({{ site.url }}/assets/postImages/Revols.png)
+
+![Revols3]({{ site.url }}/assets/postImages/Revols.png =100x100)
+
 {% include footer.html %}
 
 
