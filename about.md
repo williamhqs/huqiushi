@@ -18,12 +18,12 @@ My Projects in 2015
     <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;">Revols</a >
 </span>
   <span class="box" style="width:22%; padding:0 5px; display:inline-block; overlfow:hidden;">
-	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/iosIcons/Auroma.png" style="width:100px;text-align:center;display:block; width:100%;border-radius:15px;"></a >
-    <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;">Auroma</a >
+	  <a href="" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/iosIcons/Auroma.png" style="width:100px;text-align:center;display:block; width:100%;border-radius:15px;"></a >
+    <a href="" style="text-align:center;display:block; width:100%;line-height:2rem;">Auroma</a >
   </span>
   <span class="box" style="width:22%; padding:0 5px; display:inline-block; overlfow:hidden;">
-	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/iosIcons/JumpRope.png" style="width:100px;text-align:center;display:block; width:100%;border-radius:15px;"></a >
-    <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;">JumpRope</a >
+	  <a href="" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/iosIcons/JumpRope.png" style="width:100px;text-align:center;display:block; width:100%;border-radius:15px;"></a >
+    <a href="" style="text-align:center;display:block; width:100%;line-height:2rem;">JumpRope</a >
   </span>
   <span class="box" style="width:22%; padding:0 5px; display:inline-block; overlfow:hidden;">
 	  <a href="http://www.dispatchrobotics.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/iosIcons/Dispatch.png" style="width:100px;text-align:center;display:block; width:100%;border-radius:15px;"></a >
