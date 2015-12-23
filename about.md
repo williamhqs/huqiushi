@@ -14,12 +14,12 @@ My Projects in 2015
 
 <div style="text-align: left;">
   <span class="box" style="width:22%; padding:0 5px; display:inline-block; overlfow:hidden;">
-	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{ site.url }}/assets/postImages/Revols.png" style="
+	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{ site.url }}/assets/iosIcons/Revols.png" style="
     width:100px;text-align:center;display:block; width:100%;"></a >
     <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;">Revols</a >
 </span>
   <span class="box" style="width:22%; padding:0 5px; display:inline-block; overlfow:hidden;">
-	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/postImages/Auroma.png" style="
+	  <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;"><img src="{{site.url}}/assets/iosIcons/Auroma.png" style="
     width:100px;text-align:center;display:block; width:100%;"></a >
     <a href="http://revols.com" style="text-align:center;display:block; width:100%;line-height:2rem;">Auroma</a >
 </span>
