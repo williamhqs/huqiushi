@@ -6,6 +6,11 @@ profile: true
 
 <b>Author</b>: William Hu, From Dalian, China.
 
-An 5+ years experience IOS developer.
-
+5+ years experience IOS developer.
+My Projects
+-----------------------------------------------
+![Revols3]({{ site.url }}/assets/postImages/Revols.png)
 {% include footer.html %}
+
+
+
