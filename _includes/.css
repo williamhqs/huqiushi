@@ -1,0 +1,12 @@
+---
+layout: nil
+---
+/*{% include font-awesome.css %}
+{% include syntax.css %}*/
+html {
+	background:red;
+}
+a {
+  color: #08c;
+  text-decoration: none;
+}
