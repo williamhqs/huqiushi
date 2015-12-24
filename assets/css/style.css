@@ -645,5 +645,29 @@ h2.month {
 	.post h2 { font-size:20px; }
 }
 
+/* About Page */
+
+#about a{
+	text-align:center;
+	display:block;
+	width:100%;
+	line-height:2rem;
+}
+#about a img{
+	width:200px;
+	text-align:center;
+	display:block;
+	width:100%;
+	border-radius:15px;
+}
+
+#about {
+}
+#about .box {
+	width:22%; 
+	padding:0 5px; 
+	display:inline-block; 
+	overlfow:hidden;
+}
 
 
