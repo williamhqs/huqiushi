@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Capistrano Variables
-published: false
+published: true
 date:   2015-12-25 10:37
 categories: Web
 tags: Capistrano
