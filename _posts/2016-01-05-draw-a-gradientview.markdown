@@ -49,9 +49,20 @@ CGGradientDrawingOptions.DrawsAfterEndLocation)
     }
     
    ```
-
-
-
-
-
+   
+   ###用法###
+   
+   1. 直接拖拽到`UIView`到`xib`文件或者`storyboard`,修改class为`GSGradientView`
+   
+   2. 代码
+   
+   ```
+   let gradientView = GSGradientView(frame: CGRectMake(80,370,220,128))
+   gradientView.startColor = UIColor.blueColor()
+   gradientView.cornerSize = CGSize(width: 10, height: 10)
+   gradientView.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(gradientView)
+        
+   ```
+      
 具体代码：[https://github.com/williamhqs/GSAnalysis/blob/master/Pod/Classes/GSGradientView.swift]()
