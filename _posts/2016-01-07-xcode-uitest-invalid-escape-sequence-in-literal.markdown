@@ -1,7 +1,7 @@
 ---
 layout: post
 title: XCode UITest: Invalid escape sequence in literal
-published: false
+published: true
 date:   2016-01-07 16:00
 categories: Test
 tags: swift UITest
