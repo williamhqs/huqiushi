@@ -1,0 +1,27 @@
+---
+layout: post
+title: IOS 默认导航条左向右滑动手势不工作
+published: true
+date:   2016-01-16 09:33
+categories:
+tags:
+comments: true
+description: IOS 7以上系统自带一个从左向右滑动的手势来返回上
+---
+
+IOS 7以上系统自带一个从左向右滑动的手势来返回上一级，但是如果是系统自己的back按钮的时候是默认工作的。
+
+如果你修改了back按钮：
+
+```
+self.navigationItem.leftBarButtonItem   = [[UIBarButtonItem alloc] initWithCustomView:self.leftMenuButton];
+
+```
+并且有`UITableView`的时候你会发现这个滑动不起作用了。
+
+**解决方法：**
+ViewController 遵循代理 `UIGestureRecognizerDelegate`,
+然后在`viewDidAppear` 或者`viewDidlaod`中加入
+
+`self.navigationController.interactivePopGestureRecognizer.delegate = self;`
+就可以了！
