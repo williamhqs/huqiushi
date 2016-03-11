@@ -1,4 +1,4 @@
-I am branch2.
+I am branch2. 2
 
 This is a port of [Cactus](https://github.com/koenbok/Cactus)'s default theme for Jekyll.
 Feel free to fork, change, modify and re-use it.
