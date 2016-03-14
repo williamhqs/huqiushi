@@ -1,4 +1,4 @@
-I am on master 2.
+I am on master 3.4
 
 This is a port of [Cactus](https://github.com/koenbok/Cactus)'s default theme for Jekyll.
 Feel free to fork, change, modify and re-use it.
