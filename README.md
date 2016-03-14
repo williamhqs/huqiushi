@@ -1,4 +1,6 @@
-I am branch2. 3
+I am branch2. 4
+
+It's such a good day today!
 
 This is a port of [Cactus](https://github.com/koenbok/Cactus)'s default theme for Jekyll.
 Feel free to fork, change, modify and re-use it.
