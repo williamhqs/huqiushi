@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xcode git 忽略一些文件
-published: false
+published: true
 date:   2016-03-11 16:05
 categories:
 tags:
@@ -15,5 +15,5 @@ description: .gitignore 忽略一些文件
 
 新建一个Xcode工程，你可能发现你没有```.gitignore```文件，那么很简单创建一个就好了。应该和.git一个目录。
 
-
+里面就可以添加一些你想忽略的文件了：
 
