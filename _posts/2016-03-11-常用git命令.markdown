@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 常用Git命令:如何查看远程服务器上都有哪些分支？
+title: 常用Git命令:如何查看远程服务器上都有哪些分支
 published: true
 date:   2016-03-11 16:18
 categories: Git
