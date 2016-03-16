@@ -4,7 +4,7 @@ meta_description: "IOS, swift"
 
 aboutPage: true
 
-kramdown: redcarpet
+
 highlighter: pygments
 
 paginate: 20

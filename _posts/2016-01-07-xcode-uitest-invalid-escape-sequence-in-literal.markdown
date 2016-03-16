@@ -1,6 +1,6 @@
 ---
 layout: post
-title: XCode UITest: Invalid escape sequence in literal
+title: XCode UITest Invalid escape sequence in literal
 published: true
 date:   2016-01-07 16:00
 categories: Test
