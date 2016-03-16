@@ -22,10 +22,20 @@ description: `git branch -a` 不确切。在服务器端github新加一个...
 
 然后你在用 `git branch -a` 你就会发现服务器端所有的branch和本地的branch了。
 
-2. 顺便说下```git pull``` 和 ```git pull --all``` 的不同是`--all`是所有配置好的远程服务端，也就是一个服务器的情况他们是一样的.
+1. 顺便说下```git pull``` 和 ```git pull --all``` 的不同是`--all`是所有配置好的远程服务端，也就是一个服务器的情况他们是一样的.
 
-3. 如果仅仅想把服务器的某个分支添加上：
+2. 如果仅仅想把服务器的某个分支添加上：
 `git checkout -b branch remotes/origin/branch4`
 
-4. ```git remote update origin = git fetch origin```
+3. 如何抓取某个tag 
+`git clone` 下来之后 `git tag` 会展示所有的tags，然后你如果`git checkout tags/tag_name`就可以了。
+
+更好的方式就是你抓下来在生成一个新的分支`git checkout tags/<tag_name> -b <tag_name>`
+
+3. ```git remote update origin = git fetch origin```
    ```git remote update = git fetch --all```
+   
+ 
+
+
+   
