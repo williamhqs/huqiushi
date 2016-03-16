@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xcode git 忽略一些文件
-published: true
+published: fasle
 date:   2016-03-11 16:05
 categories:
 tags:

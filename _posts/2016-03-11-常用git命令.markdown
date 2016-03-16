@@ -6,7 +6,7 @@ date:   2016-03-11 16:18
 categories: Git
 tags: Git
 comments: true
-description: `git branch -a` 不确切。在服务器端github新加一个...
+description: `git branch -a` 不确切。在服务器端github新加一个
 ---
 
 1. 如何查看远程服务器上都有哪些分支？
