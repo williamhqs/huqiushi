@@ -12,7 +12,7 @@ baseurl: /
 domain_name: 'http://goaldrive.com'
 google_analytics: 'UA-XXXXXXXX-X'
 disqus: true
-disqus_shortname: 'WilliamHu'
+disqus_shortname: 'goaldrive'
 
 # Details for the RSS feed generator
 url:            'http://goaldrive.com'
