@@ -5,7 +5,7 @@ meta_description: "IOS, swift"
 aboutPage: true
 
 
-highlighter: pygments
+highlighter: rouge
 
 paginate: 20
 baseurl: /
