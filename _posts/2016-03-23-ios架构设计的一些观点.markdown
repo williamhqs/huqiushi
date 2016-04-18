@@ -1,6 +1,6 @@
 ---
 layout: post
-title: IOS架构设计的一些观点
+title: IOS 网络层那些事
 published: false
 date:   2016-03-23 14:04
 categories:
@@ -30,5 +30,99 @@ description: more
 &nbsp;&nbsp;&nbsp;&nbsp;总结下就是，现在有时间思考问题的时候，考虑下IOS架构的问题。
 
 ##网络层
+
+**第一个问题， GCD 还是 NSoperationQueue?**
+
+1. NSOperation 和 NSoperationQueue 比GCD级别更高，Apple推荐我们用更高级的优先，然后根据需求到低一级别的。
+2. 如何取消一个GCD请求是一个问题
+
+先来点基础知识：
+
+Queue (FIFO)
+
+先进先出，就是我们排队买票。
+
+
+Disaptch Queues
+
+> Dispatch queues are an easy way to perform tasks asynchronously and concurrently in your application. 
+
+也就是任务是异步还是并发执行。有件事你必须知道的就是queues是被单独的线程中执行的，而不是创建他们的线程。也就是说主线程执添加到Dispatch Queues 的任务会在一个新的线程中被执行。
+
+Serial Queues
+
+一次只能执行一个任务。但是多个Serial Queues之间的任务也可能是并行的。比如，你创建2个Serial Queues， 每个一次执行一个任务，所以最多就是有两个任务之同时进行。
+
+这个串行队列就避免了竞争一个共享的资源。2个人都想买一张票，卖票处的一个窗口（就一个工作人员）是共享的，如果这个窗口同时卖给两个人那就混乱了。所以老实排队去吧。但是如果这个卖票处可能有多个窗口，所以多个人可能同时买票的。也就是说串行队列可以执行多个并行的任务。
+
+优势： 1. 没有竞争 race condition
+2. 任务的顺序是预知的。你插入到dispatch queuq的顺序就是执行的顺序。
+3. 你可以创建任意多个穿行队列。
+
+Concurrent Queues 并发队列
+
+也就是并行的执行多个任务。被添加到Queue的顺序就是他们开始执行的顺序，但是他们都是并发执行的，就是不用等它前面的某个任务完成。
+来个栗子： 长途车下车方便。只有下车的才开始撒尿，一个个的下。但是你开始了并不用等别人撒尿结束要不憋死了。谁先完成也不一定。
+
+好吧下面开始谈怎么使用。
+默认系统提供一个串行和4个并发的队列。 main dispatch dueue 是全局可用的串行队列来执行程序main thread里的任务。更新UI和执行UIView更新的相关任务。一次只能执行一个，所以你就知道了为啥你主线程里如果下载一大堆数据没完事的时候界面是不想响应的。
+
+其他四个我们也叫全局分发队列Gloabl Dispatch Queues。 
+
+```ruby
+DISPATCH_QUEUE_PRIORITY_HIGH
+DISPATCH_QUEUE_PRIORITY_DEFAULT
+DISPATCH_QUEUE_PRIORITY_LOW
+DISPATCH_QUEUE_PRIORITY_BACKGROUND
+```
+上面的顺序也是优先级的顺序。
+
+最后关于串行和并发的去咧是没有数量限制的。你可以创建自己的，也可以用上面的这些的。
+
+
+
+Operation Queues
+
+GCD 是低级的C API 并发执行任务。Qperation Queues，是高级抽象Queuqe 模型，它在GCD之上。也就是说你并发执行任务就和GCD一样，但是是面向对象的。总之，Operation Queues 让你的生活更简单。
+
+不遵循FIFO： 你可以设置执行优先级同时你也可以添加operations之间的依赖关系，也就是一些operation智能在一些其它的operations执行之后执行。
+
+默认是并发的。你不能改变它的类型为串行队列，但是你可以通过操作间的依赖来按顺序依次执行队列。
+
+NSOperationQueue 的对象就是Operation Queues. 他的task被封装在NSOperation里面。
+
+NSOperation
+
+提交到Operation Queue里面的任务（task）是NSOperation类型的实例变量。NSOperation 是抽象类不能直接使用，但是在IOS sdk里面有两个你可以直接使用的NSOperation 子类。
+
+NSBlockOperation 和 NSInvocationOperation。
+
+
+
+
+优势：
+1. 支持依赖。
+2. 可以设置优先级。
+3. public enum NSOperationQueuePriority : Int {
+    case VeryLow
+    case Low
+    case Normal
+    case High
+    case VeryHigh
+}
+3. 你可以取消任何queue的一个特定的Operation或者所有的Operations. Operation添加到queue里之后可以被取消。当你取消的时候，下面三件事情发生了：
+
+你的Operation已经完成。Cancel就没有用了。
+你的操作正在被执行。这种情况下，系统将不会强制停止你的操作代码，但是会设置canceled属性为true
+你的操作还在queue里面等待被执行，这时候这个操作就不会被执行了。
+
+
+NSOperation 有三个很重要的属性 finished canceled ready
+一旦操作执行完成 finsihed就被设置为true；操作被取消那么canceled就被设置true。ready 操作将要被执行设置为true。
+
+任何NSOperatioin 都可以设置completion block一单任务被完成。 block 会在finished设置为true的时候直接调用。
+
+
+http://www.appcoda.com/ios-concurrency/
 
 

@@ -39,3 +39,19 @@ description: 查看分支的时候 `git branch -a` 不确切。在服务器端gi
 
 
    
+
+396
+down vote
+accepted
+Git is probably already tracking the file.
+
+From the gitignore docs:
+
+To stop tracking a file that is currently tracked, use git rm --cached.
+In your case something like:
+
+git rm --cached ProjectFolder.xcodeproj/project.xcworkspace/xcuserdata/myUserName.xcuserdatad/UserInterfaceState.xcuserstate
+git commit -m "Removed file that shouldn't be tracked"
+Alternatively you can use the -a option to git commit that will add all files that have been modified or deleted.
+
+Once you've removed the file from git, it will respect your .gitignore.
