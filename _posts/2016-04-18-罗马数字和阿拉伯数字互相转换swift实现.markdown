@@ -56,6 +56,3 @@ arbic2Roman(1986)
 
 可以到这个在线的来验证下： [在线验证](http://www.calkoo.com/?lang=22&page=34)
 
-###罗马数字转换阿拉伯数字
-
-一样的道理
