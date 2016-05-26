@@ -9,17 +9,17 @@ comments: true
 description: more
 ---
 
-###MVP 和 MVC 什么区别？
+## MVP 和 MVC 什么区别
 
-####MVC - Modle View Controller####
+#### MVC - Modle View Controller####
 
 MVC模式是一个集中在从UI的业务层（Model）分离出UI（View）的UI展示模式。主要独立出三块的主要职责 － **View**渲染UI元素，**Controller**响应UI动作，**Model**业务行为和状态的管理。大部分的执行中这三个块可以直接两两交互，一部分的执行中controller负责检测那个试图需要被展示。
 
 
-####MVP - Model View Presenter
+#### MVP - Model View Presenter####
 MVP模式是一个基于MVP模式中的理念的一个UI展示模式。这个模式独立出四个块：－ **View** 渲染UI元素，**View interface** 削弱presenter和它的view的解耦**Presenter** view/model之间的交互 **model**业务行为和状态的管理。一些执行中Presenter和一些服务层（service layer／Controller）来返回／持续化model。view interface和service layer 通常被用来更容易的给presenter和model写单元测试。
 
-###主要的好处
+### 主要的好处###
 
 在决定设计模式的时候要考虑好他们的优劣。最大的缺点就是额外的复杂性和学习曲线。简单的解决方案可能不适合用设计模式，高级的解决方案通过使用设计模式获取很多好处。
 
@@ -49,7 +49,7 @@ Model－ 业务行为和状态管理
 
 通过这些模式你的代码变得更容易修改。例如考虑到多少UI和数据访问技术在过去的几年中的改变和今天我们可以做出的选择，一个好的设计方案能同时支持很多UI和数据访问技术。
 
-###现在说说主要的区别
+### 现在说说主要的区别###
 
 MVP 
 
