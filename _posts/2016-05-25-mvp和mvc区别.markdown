@@ -17,7 +17,7 @@ MVC模式是一个集中在从UI的业务层（Model）分离出UI（View）的U
 
 
 #### MVP - Model View Presenter####
-MVP模式是一个基于MVP模式中的理念的一个UI展示模式。这个模式独立出四个块：－ **View** 渲染UI元素，**View interface** 削弱presenter和它的view的解耦**Presenter** view/model之间的交互 **model**业务行为和状态的管理。一些执行中Presenter和一些服务层（service layer／Controller）来返回／持续化model。view interface和service layer 通常被用来更容易的给presenter和model写单元测试。
+MVP模式是一个基于MVP模式中的理念的一个UI展示模式。这个模式独立出四个块：－ **View** 渲染UI元素，**View interface** 削弱presenter和它的view的耦和**Presenter** view/model之间的交互 **model**业务行为和状态的管理。一些执行中Presenter和一些服务层（service layer／Controller）来返回／持续化model。view interface和service layer 通常被用来更容易的给presenter和model写单元测试。
 
 ### 主要的好处###
 
