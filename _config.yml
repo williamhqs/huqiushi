@@ -8,6 +8,9 @@ aboutPage: true
 highlighter: rouge
 
 paginate: 20
+gems: [jekyll-paginate]
+
+
 baseurl: /
 domain_name: 'http://goaldrive.com'
 google_analytics: 'UA-XXXXXXXX-X'
@@ -20,7 +23,6 @@ author:         'Goal栈'
 authorTwitter:  'williamhqs'
 
 permalink:       /:year/:title/
-
 defaults:
     -
         scope:
