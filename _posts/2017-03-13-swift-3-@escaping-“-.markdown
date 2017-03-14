@@ -7,7 +7,7 @@ date:   2017-03-13 11:40
 categories:
 tags:
 comments: true
-description: @noescape 和 @escaping 的区别
+description: "@noescape和@escaping的区别"
 ---
 
 这两个别混淆，实际上也很难混淆，就理解就可以了。因为他们都是存在不同的`swift` 版本里面。
