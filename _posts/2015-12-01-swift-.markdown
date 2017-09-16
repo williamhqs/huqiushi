@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Swift:冒泡排序&快速排序
-published: false
+published: true
 date:   2015-12-01 13:49
 categories: 算法
 tags:

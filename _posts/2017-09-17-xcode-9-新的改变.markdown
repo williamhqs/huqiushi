@@ -1,0 +1,12 @@
+---
+layout: post
+title: Xcode 9 新的改变
+published: true
+date:   2017-09-17 00:08
+categories:
+tags:
+comments: true
+description: more
+---
+
+1. Command +/- 改变编辑窗口的大小， 这个我是用了一下就爱上了。在不同的mac下游刃有余。
