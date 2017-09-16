@@ -1,16 +1,10 @@
 name: Goal栈
 description: A coder's life
 meta_description: "IOS, swift"
-
 aboutPage: true
-
-
 highlighter: rouge
-
 paginate: 20
 plugins: [jekyll-paginate]
-
-
 baseurl: /
 domain_name: 'http://goaldrive.com'
 google_analytics: 'UA-XXXXXXXX-X'
