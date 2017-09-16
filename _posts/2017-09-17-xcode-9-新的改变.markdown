@@ -6,7 +6,17 @@ date:   2017-09-17 00:08
 categories:
 tags:
 comments: true
-description: more
+description: Xcode 9
 ---
+1. Command +/- 改变编辑窗口的大小
+ 
+ > 这个我是用了一下就爱上了。在不同的mac下游刃有余。
+2. 不同模拟器simuloator下运行同一个app。
 
-1. Command +/- 改变编辑窗口的大小， 这个我是用了一下就爱上了。在不同的mac下游刃有余。
+ > 这个也是好极了，尤其是测试兼容性的时候。选中不同型号的模拟器，运行即可。
+
+3. 无线调试。
+
+ > 其实也不是完全无线，第一次还是需要的。要不我的12寸macbook有用武之地了。 
+
+  
