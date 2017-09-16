@@ -8,7 +8,7 @@ aboutPage: true
 highlighter: rouge
 
 paginate: 20
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 
 baseurl: /
