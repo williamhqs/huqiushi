@@ -1,0 +1,21 @@
+---
+layout: post
+title: Git更改远程仓库名字
+published: true
+date:   2017-03-14 12:19
+categories:
+tags:
+comments: true
+description: more
+---
+
+例如你在branchOld 想改名branchNew
+
+1. 改本地名字在branchOld上
+	`git branch -m branchNew`
+	不在branchOld上
+	`git branch -m branchOld branchNew`
+2. 删除branchB并push新branch
+	`git push origin :branchOld branchNew`
+3. 重置upstream
+	`git push origin -u :branchNew`

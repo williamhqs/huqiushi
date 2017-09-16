@@ -1,0 +1,65 @@
+---
+layout: post
+title: Swift序列的操作
+published: true
+date:   2016-04-22 12:42
+categories:
+tags: swift
+comments: true
+description: more
+---
+
+swift 的数组支持三个函数： **map** **filter** **reduce**
+
+从函数名其实可以判断出如何使用，**map** 就是一一操作，不管对不对反正我这样理解。其实map就是在元素上面加上了一个函数，用这个函数的返回值作为返回值，这样新的数组就是新的返回值组成的了。
+**filter**过滤，也就是用一个条件来限制返回值。 **reduce** 里面的元素要减少并返回一个数值的，比如求和这样的操作。可能这样理解不合理只是帮助记忆的一个方式。
+
+例子： 将一个数组元素后面都加一个"?" 
+
+第一种，这个就是传统的了
+```
+let moneyArray = [1,2,3]
+var stringsArray : [String] = []
+for element in moneyArray {
+    stringsArray.append("\(element)?")
+}
+```
+
+第二种： 
+
+```
+func appendMark(element:Int) -> String {
+    return String(element)+"?"
+}
+
+var dr = ar.map({(element)-> String in appendMark(element)}
+)
+```
+好像还不是很爽。。。
+
+第三种：(return 可以去掉）
+
+```
+var dr = ar.map({(element)-> String in return String(element)+"?"})
+```
+哇就一行
+
+第四种: 太T么简洁了
+
+```
+var br = ar.map {String($0) + "?"}
+```
+
+###filter 的例子
+自己体会吧
+```
+var cr = ar.filter{$0>2}
+```
+
+###reduce的例子
+求数组的和，0是初始值
+```
+var sum = ar.reduce(0, combine: {$0+$1})
+```
+
+这样的swift谁能不爱呢？

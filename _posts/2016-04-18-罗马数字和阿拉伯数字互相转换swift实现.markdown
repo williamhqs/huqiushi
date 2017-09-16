@@ -1,0 +1,58 @@
+---
+layout: post
+title: 罗马数字和阿拉伯数字互相转换swift实现
+published: true
+date:   2016-04-18 13:56
+categories:
+tags:
+comments: true
+description: 
+---
+
+罗马数字和阿拉伯数字之间的转换就是：**d = a\*b + c** 的问题。
+
+有一个码表：
+
+```
+["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
+[1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+```
+也就是任意一个罗马数字都可以被下面这个阿拉伯数字的码表来拆分。
+
+比如 **11 ＝ 10 ＊ 1 + 1**
+也就是 **11 = X * 1 + I = XI**
+
+再比如 **22 ＝ 10 ＊ 2 ＋ 1 * 2 **
+也就是 **22 = X * 2 + I * 2 = XXII** 
+
+所以这里的思路就是： 从大到小拆分阿拉伯数字对应码表里的每个元素，看有几个罗马数字的字符就添加多少字符。
+
+```ruby
+func arbic2Roman(number: Int) -> String{
+    var romanVale: String = ""
+    
+    let romanValues = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
+    let arabicValues = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+
+    var copyNumber = number
+    
+    for (index, char) in romanValues.enumerate() {
+        
+        let div = copyNumber / arabicValues[index]
+        
+        if div > 0 {
+            for _ in 0..<div {
+                romanVale += char
+            }
+            copyNumber -= arabicValues[index] * div
+        }
+    }
+    return romanVale
+}
+
+arbic2Roman(1986)
+```
+输出 **"MCMLXXXVI"**
+
+可以到这个在线的来验证下： [在线验证](http://www.calkoo.com/?lang=22&page=34)
+

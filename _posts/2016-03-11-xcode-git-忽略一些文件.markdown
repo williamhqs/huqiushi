@@ -1,0 +1,18 @@
+---
+layout: post
+title: Xcode git 忽略一些文件
+published: false
+date:   2016-03-11 16:05
+categories:
+tags:
+comments: true
+description: .gitignore 忽略一些文件
+---
+
+项目版本控制的时候肯定是有些文件是不需要版本控制的。
+
+那么IOS都需要哪些文件被忽略呢？
+
+新建一个Xcode工程，你可能发现你没有```.gitignore```文件，那么很简单创建一个就好了。应该和.git一个目录。
+
+里面就可以添加一些你想忽略的文件了：

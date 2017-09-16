@@ -1,0 +1,57 @@
+---
+layout: post
+title: Git如何查看远程服务器上都有哪些分支
+published: true
+date:   2016-03-11 16:18
+categories: Git
+tags: Git
+comments: true
+description: 查看分支的时候 `git branch -a` 不确切。在服务器端github新加一个
+---
+
+1. 如何查看远程服务器上都有哪些分支？
+`git branch -r` 和`git branch -a` 不确切。在服务器端github新加一个分支比如branch1，用这条命令你就会发现看不到branch1，你以为服务器上没有那branch1呢。
+
+那么怎么办？
+
+首先要```git fetch``` 这个命令把服务器端的远程仓库的你本地没有的数据下载到本地，然后更新 **origin/master** 指针到最新。
+
+其实如果你只有一个`origin` 那么 ｀git fetch`和`git fetch origin`就可以了一样的.
+
+如果你有多个数据库的仓库不同服务器也就是通过```git remote add origin2 http://....com/xxx.git```这种方式添加的话，就是用``git fetch --all``.
+
+然后你在用 `git branch -a` 你就会发现服务器端所有的branch和本地的branch了。
+
+1. 顺便说下```git pull``` 和 ```git pull --all``` 的不同是`--all`是所有配置好的远程服务端，也就是一个服务器的情况他们是一样的.
+
+2. 如果仅仅想把服务器的某个分支添加上：
+`git checkout -b branch remotes/origin/branch4`
+
+3. 如何抓取某个tag 
+`git clone` 下来之后 `git tag` 会展示所有的tags，然后你如果`git checkout tags/tag_name`就可以了。
+
+更好的方式就是你抓下来在生成一个新的分支`git checkout tags/<tag_name> -b <tag_name>`
+
+3. ```git remote update origin = git fetch origin```
+   ```git remote update = git fetch --all```
+   
+ 
+
+
+   
+
+396
+down vote
+accepted
+Git is probably already tracking the file.
+
+From the gitignore docs:
+
+To stop tracking a file that is currently tracked, use git rm --cached.
+In your case something like:
+
+git rm --cached ProjectFolder.xcodeproj/project.xcworkspace/xcuserdata/myUserName.xcuserdatad/UserInterfaceState.xcuserstate
+git commit -m "Removed file that shouldn't be tracked"
+Alternatively you can use the -a option to git commit that will add all files that have been modified or deleted.
+
+Once you've removed the file from git, it will respect your .gitignore.
